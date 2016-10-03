@@ -5,6 +5,24 @@ public class EnemyGenerator : MonoBehaviour {
     public GameObject[] clone;
     public Transform levelResolution;
     public int NumberOfEachEnemy;
+    
+    #region TODO normal single enemy generator after death, without Find 
+    public enum EnemyType
+    {
+        SQUARE,
+        TRIANGLE,
+        POLYGON
+    }
+
+    [System.Serializable]
+    public struct EnemyCharacteristics
+    {
+        public EnemyType enemyType;
+        public Sprite sprite;
+    }
+
+    public EnemyCharacteristics[] enemies;
+    #endregion
 
     float level_width, level_height;
     float x, y;

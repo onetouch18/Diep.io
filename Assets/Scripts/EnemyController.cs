@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public int startingHealth;
     public int experienceValue;
     public Slider healthSlider;
+    public AnimationClip enemyDeathClip;
 
     float currentHealth;
 
@@ -42,9 +43,11 @@ public class EnemyController : MonoBehaviour
 
     void Death()
     {
+        GetComponent<Collider2D>().enabled = false;
         ExperienceManager.experience += experienceValue;
         GameObject gameManager = GameObject.Find("GameManager");
         gameManager.GetComponent<EnemyGenerator>().GenerateEnemy(orderInCollection);
-        Destroy(gameObject);
+        GetComponent<Animator>().Play(enemyDeathClip.name);
+        Destroy(gameObject, enemyDeathClip.length);
     }
 }
